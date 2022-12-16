@@ -1,7 +1,5 @@
 package io.zipcoder.crudapp.controller;
 
-import java.util.Optional;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.BDDMockito;
@@ -30,30 +28,30 @@ public class PersonControllerTest {
     @MockBean
     private PersonRepository repository;
 
-    // @Test
-    // public void testShow() throws Exception {
-    //     Long givenId = 1L;
-    //     BDDMockito
-    //             .given(repository.findOne(givenId))
-    //             .willReturn(Optional.of(new Person("New", "Person")));
+    @Test
+    public void testShow() throws Exception {
+        Long givenId = 1L;
+        BDDMockito
+                .given(repository.findOne(givenId))
+                .willReturn(new Person("New", "Person"));
 
-    //     String expectedContent = "{\"id\":null,\"firstName\":\"New\",\"lastName\":Person}";
-    //     this.mvc.perform(MockMvcRequestBuilders
-    //             .get("/bakers/" + givenId))
-    //             .andExpect(MockMvcResultMatchers.status().isOk())
-    //             .andExpect(MockMvcResultMatchers.content().string(expectedContent));
-    // }
+        String expectedContent = "{\"id\":null,\"firstName\":\"New\",\"lastName\":\"Person\"}";
+        this.mvc.perform(MockMvcRequestBuilders
+                .get("/people/" + givenId))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().string(expectedContent));
+    }
 
     // @Test
     // public void testCreate() throws Exception {
-    //     Person person = new Person(null, "New", "Person");
+    //     Person person = new Person("New", "Person");
     //     BDDMockito
     //             .given(repository.save(person))
     //             .willReturn(person);
 
-    //             String expectedContent = "{\"id\":null,\"firstName\":\"New\",\"lastName\":Person}";
+    //             String expectedContent = "{\"id\":null,\"firstName\":\"New\",\"lastName\":\"Person\"}";
     //     this.mvc.perform(MockMvcRequestBuilders
-    //             .post("/bakers/")
+    //             .post("/people/")
     //             .content(expectedContent)
     //             .accept(MediaType.APPLICATION_JSON)
     //             .contentType(MediaType.APPLICATION_JSON)
