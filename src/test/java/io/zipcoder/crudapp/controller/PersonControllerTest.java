@@ -33,9 +33,9 @@ public class PersonControllerTest {
         Long givenId = 1L;
         BDDMockito
                 .given(repository.findOne(givenId))
-                .willReturn(new Person("New", "Person"));
+                .willReturn(new Person(1L,"New", "Person"));
 
-        String expectedContent = "{\"id\":null,\"firstName\":\"New\",\"lastName\":\"Person\"}";
+        String expectedContent = "{\"id\":1,\"firstName\":\"New\",\"lastName\":\"Person\"}";
         this.mvc.perform(MockMvcRequestBuilders
                 .get("/people/" + givenId))
                 .andExpect(MockMvcResultMatchers.status().isOk())
